@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import viteLogo from '../vite.svg'
+import { BrowserRouter } from 'react-router-dom'
+import { Router } from './Router'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return <div className="App">Coffeee</div>
+export function App() {
+  return (
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  )
 }
-
-export default App
