@@ -1,3 +1,10 @@
+import { Hero } from './components/Hero'
+
 export function Home() {
-  return <h1>Home</h1>
+  return (
+    <div>
+      <Hero />
+      <h1>all the rest of things</h1>
+    </div>
+  )
 }

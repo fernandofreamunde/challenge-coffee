@@ -1,20 +1,29 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
-  padding: 2rem 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   position: fixed;
   width: 100%;
+
   background-color: ${(props) => props.theme['base-bg']};
+  z-index: 10;
+
+  div {
+    padding: 2rem 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `
-export const GhostContainer = styled.header`
+export const GhostContainer = styled.div`
   padding-top: 6.75rem;
 
   width: 100%;
   background-color: transparent;
+`
+
+export const Wrapper = styled.div`
+  max-width: 90rem;
+  margin: 0 auto;
 `
 
 export const Nav = styled.nav`
@@ -48,5 +57,4 @@ export const CartButton = styled.span`
 
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 `
