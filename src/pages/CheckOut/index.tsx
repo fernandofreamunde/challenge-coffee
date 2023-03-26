@@ -1,3 +1,38 @@
 export function CheckOut() {
-  return <h1>Check Out</h1>
+  return (
+    <div>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+      <h1>Check Out</h1>
+    </div>
+  )
 }
