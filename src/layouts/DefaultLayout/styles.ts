@@ -8,21 +8,18 @@ export const HeaderContainer = styled.header`
   z-index: 10;
 
   div {
-    padding: 2rem 10rem;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 2em 8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 `
-export const GhostContainer = styled.div`
-  padding-top: 6.75rem;
-
-  width: 100%;
-  background-color: transparent;
-`
 
 export const Wrapper = styled.div`
   max-width: 90rem;
+  padding: 6.75rem 0 10rem;
   margin: 0 auto;
 `
 

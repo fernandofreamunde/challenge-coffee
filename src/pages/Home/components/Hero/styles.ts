@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import heroBg from '../../../assets/Background.svg'
+import heroBg from '../../../../assets/Background.svg'
 
 export const HeroContainer = styled.div`
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   padding: 5rem;
   background-image: url(${heroBg});
 

@@ -4,7 +4,7 @@ export function Home() {
   return (
     <div>
       <Hero />
-      <h1>all the rest of things</h1>
+      <h1>Our Coffees</h1>
     </div>
   )
 }

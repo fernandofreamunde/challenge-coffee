@@ -14,7 +14,7 @@ export function DefaultLayout() {
   return (
     <div>
       <HeaderContainer>
-        <Wrapper>
+        <div>
           <NavLink to="/">
             <img src={logo} alt="" />
           </NavLink>
@@ -29,10 +29,8 @@ export function DefaultLayout() {
               </CartButton>
             </NavLink>
           </Nav>
-        </Wrapper>
+        </div>
       </HeaderContainer>
-
-      <GhostContainer />
 
       <Wrapper>
         <Outlet />

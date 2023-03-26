@@ -1,5 +1,5 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
-import coffeeCup from '../../../assets/CoffeeCup.png'
+import coffeeCup from '../../../../assets/CoffeeCup.png'
 import {
   ShoppingCartPoint,
   HeroContainer,
