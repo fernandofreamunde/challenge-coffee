@@ -11,5 +11,10 @@ export const ProductList = styled.div`
 
 // Todo this is not ok is squishing the entire page.
 export const ProductPageContainer = styled.main`
-  padding: 0 8rem;
+  /* padding: 0 8rem; */
+`
+
+export const ContentContainer = styled.div`
+  /* padding: 0 8rem; */
+  margin-left: 8rem;
 `

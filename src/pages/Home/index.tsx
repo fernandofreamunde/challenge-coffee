@@ -14,7 +14,7 @@ import HawaiianPicture from '../../assets/Havaiano.png'
 import ArabicPicture from '../../assets/Arabe.png'
 import IrishPicture from '../../assets/Irish.png'
 import { ProductCard } from './components/ProductCard'
-import { ProductList, ProductPageContainer } from './styles'
+import { ContentContainer, ProductList, ProductPageContainer } from './styles'
 
 export interface ProductTag {
   name: string
@@ -152,13 +152,16 @@ export function Home() {
   return (
     <ProductPageContainer>
       <Hero />
-      <h1>Our Coffees</h1>
 
-      <ProductList>
-        {products.map((product) => {
-          return <ProductCard key={product.id} product={product} />
-        })}
-      </ProductList>
+      <ContentContainer>
+        <h1>Our Coffees</h1>
+
+        <ProductList>
+          {products.map((product) => {
+            return <ProductCard key={product.id} product={product} />
+          })}
+        </ProductList>
+      </ContentContainer>
     </ProductPageContainer>
   )
 }
