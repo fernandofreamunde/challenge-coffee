@@ -72,12 +72,17 @@ export function CheckOut() {
           </div>
 
           <form action="">
-            <input type="text" placeholder="VAT" />
+            <input type="text" placeholder="VAT Number" />
             <input type="text" placeholder="Street" />
-            <input type="text" placeholder="Street-number" />
-            <input type="text" placeholder="Street-complement" />
-            <input type="text" placeholder="Postal Code" />
-            <input type="text" placeholder="City" />
+            <div>
+              <input type="text" placeholder="Street-number" />
+              <input type="text" placeholder="Street-complement" />
+            </div>
+
+            <div>
+              <input type="text" placeholder="Postal Code" />
+              <input type="text" placeholder="City" />
+            </div>
           </form>
         </AddressFormContainer>
 
