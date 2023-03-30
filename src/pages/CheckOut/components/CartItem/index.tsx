@@ -1,21 +1,25 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 import { CartItemContainer, QuantityController } from './styles'
 
-export function CartItem() {
+interface CartItemProps {
+  image: string
+  name: string
+  quantity: number
+  price: number
+}
+
+export function CartItem({ image, name, price, quantity }: CartItemProps) {
   return (
     <CartItemContainer>
-      <img
-        src="https://ui-avatars.com/api/?size=100&name=Marcus+Aurelius"
-        alt=""
-      />
+      <img src={image} alt="" />
       <div>
-        <p>Product Name </p>
+        <p>{name}</p>
         <div>
           <QuantityController>
             <span>
               <Minus size={14} weight="bold" />
             </span>
-            {1}
+            {quantity}
             <span>
               <Plus size={14} weight="bold" />
             </span>
@@ -25,7 +29,7 @@ export function CartItem() {
           </button>
         </div>
       </div>
-      <div>€ 9.99</div>
+      <div>€ {String(price / 100).padEnd(4, '0')}</div>
     </CartItemContainer>
   )
 }

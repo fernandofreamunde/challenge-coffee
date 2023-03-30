@@ -10,9 +10,54 @@ import {
   PaymentMethodContainer,
 } from './styles'
 import { CartItem } from './components/CartItem'
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import { Product } from '../Home'
+import AmericanoPicture from '../../assets/Americano.png'
+import TradPicture from '../../assets/TradExpresso.png'
+import CreamyPicture from '../../assets/ExpressoCremoso.png'
+
+interface CartEntry {
+  quantity: number
+  product: Product
+}
 
 export function CheckOut() {
+  const [cart, setCart] = useState<CartEntry[]>([
+    {
+      quantity: 1,
+      product: {
+        id: 1,
+        name: 'Traditional Expresso',
+        description: 'Coffee made with hot water and grounded coffee beans',
+        tags: [{ name: 'Traditional' }],
+        image: TradPicture,
+        price: 990,
+      },
+    },
+    {
+      quantity: 2,
+      product: {
+        id: 2,
+        name: 'Expresso Americano',
+        description: 'Diluted Expresso, less intense than the Traditional',
+        tags: [{ name: 'Traditional' }],
+        image: AmericanoPicture,
+        price: 990,
+      },
+    },
+    {
+      quantity: 2,
+      product: {
+        id: 3,
+        name: 'Creamy Expresso',
+        description: 'Traditional Expresso with creamy foam',
+        tags: [{ name: 'Traditional' }],
+        image: CreamyPicture,
+        price: 990,
+      },
+    },
+  ])
+
   return (
     <PageContainer>
       <CheckoutContainer>
@@ -66,12 +111,20 @@ export function CheckOut() {
         <h4>Coffees Selected</h4>
         <CartContainer>
           <ItemList>
-            <CartItem />
-            <ItemSeparator />
-            <CartItem />
-            <ItemSeparator />
-            <CartItem />
-            <ItemSeparator />
+            {cart.map((entry) => {
+              return (
+                <>
+                  <CartItem
+                    image={entry.product.image}
+                    name={entry.product.name}
+                    price={entry.product.price}
+                    quantity={entry.quantity}
+                    key={entry.product.id}
+                  />
+                  <ItemSeparator />
+                </>
+              )
+            })}
           </ItemList>
           <Calculations>
             {/* Totals Calculations */}
