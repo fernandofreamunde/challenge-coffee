@@ -27,6 +27,10 @@ export const CartContainer = styled.div`
 
     background: ${(props) => props.theme['yellow-base']};
     color: ${(props) => props.theme.white};
+
+    &:hover {
+      background-color: ${(props) => props.theme['yellow-dark']};
+    }
   }
 `
 
@@ -153,6 +157,10 @@ export const PaymentMethodContainer = styled.div`
 
       svg {
         color: ${(props) => props.theme['purple-base']};
+      }
+
+      &:hover {
+        background-color: ${(props) => props.theme['base-hover']};
       }
     }
   }

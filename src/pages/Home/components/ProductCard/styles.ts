@@ -101,5 +101,9 @@ export const CartController = styled.div`
 
     display: flex;
     align-items: center;
+  
+    &:hover {
+      background-color: ${(props) => props.theme['purple-base']};
+    }
   }
 `

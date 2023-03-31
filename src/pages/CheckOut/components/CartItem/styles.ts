@@ -34,6 +34,12 @@ export const CartItemContainer = styled.div`
         span {
           color: ${(props) => props.theme['base-text']};
           text-transform: uppercase;
+          font-weight: 400;
+          font-size: 0.85rem;
+        }
+
+        &:hover {
+          background-color: ${(props) => props.theme['base-hover']};
         }
       }
     }
