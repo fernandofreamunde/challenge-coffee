@@ -7,13 +7,29 @@ import {
   ProductInfo,
   ProductPrice,
 } from './styles'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../../../contexts/CartContext'
 
 interface ProductCardPorps {
   product: Product
 }
+
 export function ProductCard({ product }: ProductCardPorps) {
+  const { addEntryToCart } = useContext(CartContext)
   const [amount, setAmount] = useState(1)
+
+  function handlePlus() {
+    const result = amount + 1
+    setAmount(result)
+  }
+  function handleMinus() {
+    const result = amount - 1
+    setAmount(result < 1 ? 1 : result)
+  }
+  function handleAddToCart() {
+    addEntryToCart({ product, quantity: amount })
+    setAmount(1)
+  }
 
   return (
     <ProductCardContainer>
@@ -34,15 +50,15 @@ export function ProductCard({ product }: ProductCardPorps) {
         </PriceTag>
         <CartController>
           <div>
-            <span>
+            <span onClick={handleMinus}>
               <Minus size={14} />
             </span>
             {amount}
-            <span>
+            <span onClick={handlePlus}>
               <Plus size={14} />
             </span>
           </div>
-          <button>
+          <button onClick={handleAddToCart}>
             <ShoppingCart size={22} weight="fill" />
           </button>
         </CartController>

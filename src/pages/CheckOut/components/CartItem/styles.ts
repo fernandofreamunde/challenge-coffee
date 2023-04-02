@@ -55,12 +55,15 @@ export const CartItemContainer = styled.div`
   }
 `
 
+export const QntButton = styled.button`
+  padding: 0;
+`
+
 export const QuantityController = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
   border-radius: 6px;
-  padding: 0.5rem;
   background-color: ${(props) => props.theme['base-button']};
   color: ${(props) => props.theme['base-title']};
 
