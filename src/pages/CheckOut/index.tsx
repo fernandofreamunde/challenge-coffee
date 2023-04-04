@@ -15,6 +15,21 @@ import { CartContext } from '../../contexts/CartContext'
 export function CheckOut() {
   const { cart } = useContext(CartContext)
 
+  const deliveryFee = 350
+  const productTotal = cart.reduce((total, item) => {
+    return total + item.quantity * item.product.price
+  }, 0)
+  const orderTotal = productTotal + deliveryFee
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'EUR',
+
+    // These options are needed to round to whole numbers if that's what you want.
+    minimumFractionDigits: 2, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    maximumFractionDigits: 2, // (causes 2500.99 to be printed as $2,501)
+  })
+
   return (
     <PageContainer>
       <CheckoutContainer>
@@ -87,15 +102,15 @@ export function CheckOut() {
             {/* Totals Calculations */}
             <div>
               <div>Total items</div>
-              <div>€100</div>
+              <div>{formatter.format(productTotal / 100)}</div>
             </div>
             <div>
               <div>delivery</div>
-              <div>€23</div>
+              <div>{formatter.format(deliveryFee / 100)}</div>
             </div>
             <div>
               <div>Total</div>
-              <div>€123</div>
+              <div>{formatter.format(orderTotal / 100)}</div>
             </div>
           </Calculations>
           <button>Confirm Request</button>

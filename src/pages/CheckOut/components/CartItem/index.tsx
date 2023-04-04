@@ -26,6 +26,15 @@ export function CartItem({ product, quantity }: CartItemProps) {
     removeProduct(product)
   }
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'EUR',
+
+    // These options are needed to round to whole numbers if that's what you want.
+    minimumFractionDigits: 2, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    maximumFractionDigits: 2, // (causes 2500.99 to be printed as $2,501)
+  })
+
   return (
     <>
       <CartItemContainer>
@@ -47,7 +56,7 @@ export function CartItem({ product, quantity }: CartItemProps) {
             </button>
           </div>
         </div>
-        <div>€ {String(product.price / 100).padEnd(4, '0')}</div>
+        <div>{formatter.format(product.price / 100)}</div>
       </CartItemContainer>
       <ItemSeparator />
     </>
