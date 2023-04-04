@@ -77,11 +77,14 @@ export const CartController = styled.div`
     gap: 0.5rem;
     align-items: center;
     border-radius: 6px;
-    padding: 0.5rem;
     background-color: ${(props) => props.theme['base-button']};
 
-    span {
+    button {
+      background-color: ${(props) => props.theme['base-button']};
       color: ${(props) => props.theme['purple-dark']};
+      &:hover {
+        background-color: ${(props) => props.theme['base-hover']};
+      }
     }
   }
 
