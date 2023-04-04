@@ -15,19 +15,7 @@ import ArabicPicture from '../../assets/Arabe.png'
 import IrishPicture from '../../assets/Irish.png'
 import { ProductCard } from './components/ProductCard'
 import { ContentContainer, ProductList, ProductPageContainer } from './styles'
-
-export interface ProductTag {
-  name: string
-}
-
-export interface Product {
-  id: number
-  name: string
-  description: string
-  tags: ProductTag[]
-  image: string
-  price: number
-}
+import { Product } from '../../reducers/cart/reducer'
 
 export function Home() {
   const products: Product[] = [

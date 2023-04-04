@@ -1,14 +1,15 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { Product } from '../..'
 import {
   CartController,
   PriceTag,
   ProductCardContainer,
   ProductInfo,
   ProductPrice,
+  ProductTag,
 } from './styles'
 import { useContext, useState } from 'react'
 import { CartContext } from '../../../../contexts/CartContext'
+import { Product } from '../../../../reducers/cart/reducer'
 
 interface ProductCardPorps {
   product: Product
@@ -39,7 +40,7 @@ export function ProductCard({ product }: ProductCardPorps) {
         <img src={product.image} alt="" />
         <span>
           {product.tags.map((tag) => {
-            return <span key={tag.name}>{tag.name}</span>
+            return <ProductTag key={tag.name}>{tag.name}</ProductTag>
           })}
         </span>
         <h3>{product.name}</h3>

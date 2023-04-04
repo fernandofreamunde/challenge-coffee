@@ -54,4 +54,26 @@ export const CartButton = styled.span`
 
   display: flex;
   align-items: center;
+  position: :relative;
+`
+
+export const Badge = styled.span`
+  background-color: ${(props) => props.theme['yellow-dark']};
+  color: ${(props) => props.theme.white};
+  position: absolute;
+  border-radius: 9999999px;
+  padding: 0.25rem;
+  height: 1.25rem;
+  width: 1.25rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  right: 18.5rem;
+  top: 1.75rem;
+
+  font-size: 0.65rem;
 `

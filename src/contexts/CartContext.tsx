@@ -1,6 +1,5 @@
-import { ReactNode, createContext, useReducer, useState } from 'react'
-import { Product } from '../pages/Home'
-import { CartReducer } from '../reducers/cart/reducer'
+import { ReactNode, createContext, useReducer } from 'react'
+import { CartReducer, Product } from '../reducers/cart/reducer'
 import {
   addItemToCart,
   changeQuantityOfItemInCart,
@@ -35,12 +34,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return item.product === data.product
     })
 
-    if (index > -1) {
-      increaseQuantity(data.product)
+    if (index === -1) {
+      dispatch(addItemToCart(data))
       return
     }
 
-    dispatch(addItemToCart(data))
+    increaseQuantity(data.product)
   }
 
   function increaseQuantity(product: Product) {
@@ -62,7 +61,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     let { quantity } = cart[index]
 
     quantity = quantity - 1
-    dispatch(changeQuantityOfItemInCart({ product, quantity }))
+    if (quantity !== 0) {
+      dispatch(changeQuantityOfItemInCart({ product, quantity }))
+    }
   }
 
   function removeProduct(product: Product) {

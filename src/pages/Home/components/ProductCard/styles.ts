@@ -19,15 +19,8 @@ export const ProductInfo = styled.div`
   }
 
   span {
-    margin-top: 0.75rem;
-    font-weight: 700;
-    font-size: 0.625rem;
-    line-height: 130%;
-    text-transform: uppercase;
-    color: ${(props) => props.theme['yellow-dark']};
-    background-color: ${(props) => props.theme['yellow-light']};
-    padding: 0.25rem 0.5rem;
-    border-radius: 100px;
+    display: flex;
+    gap: 0.25rem;
   }
 
   h3 {
@@ -43,6 +36,18 @@ export const ProductInfo = styled.div`
     text-align: center;
   }
 `
+export const ProductTag = styled.span`
+  margin-top: 0.75rem;
+  font-weight: 700;
+  font-size: 0.625rem;
+  line-height: 130%;
+  text-transform: uppercase;
+  color: ${(props) => props.theme['yellow-dark']};
+  background-color: ${(props) => props.theme['yellow-light']};
+  padding: 0.25rem 0.5rem;
+  border-radius: 100px;
+`
+
 export const ProductPrice = styled.div`
   margin-top: 2.0625rem;
   display: flex;

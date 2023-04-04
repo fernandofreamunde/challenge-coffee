@@ -5,7 +5,6 @@ import {
   CartContainer,
   CheckoutContainer,
   ItemList,
-  ItemSeparator,
   PageContainer,
   PaymentMethodContainer,
 } from './styles'
@@ -76,14 +75,11 @@ export function CheckOut() {
           <ItemList>
             {cart.map((entry) => {
               return (
-                <>
-                  <CartItem
-                    key={entry.product.id}
-                    product={entry.product}
-                    quantity={entry.quantity}
-                  />
-                  <ItemSeparator key={cart.indexOf(entry)} />
-                </>
+                <CartItem
+                  key={entry.product.id}
+                  product={entry.product}
+                  quantity={entry.quantity}
+                />
               )
             })}
           </ItemList>
