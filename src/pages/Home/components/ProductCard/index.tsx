@@ -22,10 +22,12 @@ export function ProductCard({ product }: ProductCardPorps) {
     const result = amount + 1
     setAmount(result)
   }
+
   function handleMinus() {
     const result = amount - 1
     setAmount(result < 1 ? 1 : result)
   }
+
   function handleAddToCart() {
     addEntryToCart({ product, quantity: amount })
     setAmount(1)
@@ -50,13 +52,13 @@ export function ProductCard({ product }: ProductCardPorps) {
         </PriceTag>
         <CartController>
           <div>
-            <span onClick={handleMinus}>
+            <button onClick={handleMinus}>
               <Minus size={14} />
-            </span>
+            </button>
             {amount}
-            <span onClick={handlePlus}>
+            <button onClick={handlePlus}>
               <Plus size={14} />
-            </span>
+            </button>
           </div>
           <button onClick={handleAddToCart}>
             <ShoppingCart size={22} weight="fill" />

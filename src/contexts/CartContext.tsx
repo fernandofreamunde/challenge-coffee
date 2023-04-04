@@ -1,5 +1,11 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useReducer, useState } from 'react'
 import { Product } from '../pages/Home'
+import { CartReducer } from '../reducers/cart/reducer'
+import {
+  addItemToCart,
+  changeQuantityOfItemInCart,
+  removeItemFromCart,
+} from '../reducers/cart/actions'
 
 export interface CartEntry {
   quantity: number
@@ -21,10 +27,20 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cart, setCart] = useState<CartEntry[]>([]) // replace with reducers?
+  const [cartState, dispatch] = useReducer(CartReducer, { cart: [] })
+  const { cart } = cartState
 
   function addEntryToCart(data: CartEntry) {
-    setCart([...cart, data])
+    const index = cart.findIndex((item) => {
+      return item.product === data.product
+    })
+
+    if (index > -1) {
+      increaseQuantity(data.product)
+      return
+    }
+
+    dispatch(addItemToCart(data))
   }
 
   function increaseQuantity(product: Product) {
@@ -32,8 +48,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return item.product === product
     })
 
-    cart[index].quantity += 1
-    setCart(cart)
+    let { quantity } = cart[index]
+
+    quantity = quantity + 1
+    dispatch(changeQuantityOfItemInCart({ product, quantity }))
   }
 
   function decreaseQuantity(product: Product) {
@@ -41,16 +59,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return item.product === product
     })
 
-    cart[index].quantity -= 1
-    setCart(cart)
+    let { quantity } = cart[index]
+
+    quantity = quantity - 1
+    dispatch(changeQuantityOfItemInCart({ product, quantity }))
   }
 
   function removeProduct(product: Product) {
-    const newCart = cart.filter((item) => {
-      return item.product !== product
-    })
-
-    setCart(newCart)
+    dispatch(removeItemFromCart(product))
   }
 
   return (
