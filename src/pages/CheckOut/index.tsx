@@ -11,6 +11,20 @@ import {
 import { CartItem } from './components/CartItem'
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
+import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+
+const checkoutFormValidationSchema = zod.object({
+  vatNumber: zod.string().min(1),
+  street: zod.string().min(1),
+  streetNumber: zod.string().min(1),
+  streetNumberComplement: zod.string().optional(),
+  postalCode: zod.string().min(4),
+  city: zod.string().min(1),
+})
+
+type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
 
 export function CheckOut() {
   const { cart } = useContext(CartContext)
@@ -30,6 +44,19 @@ export function CheckOut() {
     maximumFractionDigits: 2, // (causes 2500.99 to be printed as $2,501)
   })
 
+  const checkoutForm = useForm<CheckoutFormData>({
+    resolver: zodResolver(checkoutFormValidationSchema),
+  })
+
+  const { handleSubmit, watch, reset, register } = checkoutForm
+
+  function handleConfirmCheckout(data: CheckoutFormData) {
+    // createNewCycle(data)
+    console.log(data)
+
+    reset()
+  }
+
   return (
     <PageContainer>
       <CheckoutContainer>
@@ -43,18 +70,40 @@ export function CheckOut() {
             </span>
           </div>
 
-          <form action="">
-            <input type="text" placeholder="VAT Number" />
-            <input type="text" placeholder="Street" />
-            <div>
-              <input type="text" placeholder="Street-number" />
-              <input type="text" placeholder="Street-complement" />
-            </div>
+          <form
+            id="checkoutForm"
+            onSubmit={handleSubmit(handleConfirmCheckout)}
+            action=""
+          >
+            <FormProvider {...checkoutForm}>
+              <input
+                type="text"
+                placeholder="VAT Number"
+                {...register('vatNumber')}
+              />
+              <input type="text" placeholder="Street" {...register('street')} />
+              <div>
+                <input
+                  type="text"
+                  placeholder="Street-number"
+                  {...register('streetNumber')}
+                />
+                <input
+                  type="text"
+                  placeholder="Street-complement"
+                  {...register('streetNumberComplement')}
+                />
+              </div>
 
-            <div>
-              <input type="text" placeholder="Postal Code" />
-              <input type="text" placeholder="City" />
-            </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Postal Code"
+                  {...register('postalCode')}
+                />
+                <input type="text" placeholder="City" {...register('city')} />
+              </div>
+            </FormProvider>
           </form>
         </AddressFormContainer>
 
@@ -113,7 +162,7 @@ export function CheckOut() {
               <div>{formatter.format(orderTotal / 100)}</div>
             </div>
           </Calculations>
-          <button>Confirm Request</button>
+          <input type="submit" form="checkoutForm" value="Confirm Request" />
         </CartContainer>
       </div>
     </PageContainer>

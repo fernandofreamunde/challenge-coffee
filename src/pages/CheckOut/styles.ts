@@ -15,7 +15,7 @@ export const CartContainer = styled.div`
   background-color: ${(props) => props.theme['base-card']};
   padding: 2.5rem;
 
-  button {
+  input {
     border: 0;
     padding: 1rem;
     width: 100%;
