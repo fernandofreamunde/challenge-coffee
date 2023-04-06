@@ -61,6 +61,11 @@ export function CartReducer(state: CartState, action: StateAction) {
         draft.cart.splice(index, 1)
       })
 
+    case ActionTypes.EMPTY_CART:
+      return produce(state, (draft) => {
+        draft.cart = []
+      })
+
     default:
       return state
   }

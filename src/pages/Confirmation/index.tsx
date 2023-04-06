@@ -7,8 +7,16 @@ import {
   TextBox,
   TimerPoint,
 } from './styles'
+import { useContext, useEffect } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Confirmation() {
+  const { clearCart, order } = useContext(CartContext)
+
+  useEffect(() => {
+    clearCart()
+  }, [clearCart])
+
   return (
     <ConfirmationContainer>
       <div>
@@ -20,9 +28,17 @@ export function Confirmation() {
           </DeliveryPoint>
           <span>
             <p>
-              Delivery to <strong>Corner Street, 1</strong>
+              Delivery to{' '}
+              <strong>
+                {order.address.street} {order.address.streetNumber}
+                {order.address.streetNumberComplement
+                  ? ` - ${order.address.streetNumberComplement}`
+                  : ''}
+              </strong>
             </p>
-            <p>Centrum - Amsterdam</p>
+            <p>
+              {order.address.postalCode} - {order.address.city}
+            </p>
           </span>
 
           <TimerPoint>
@@ -41,7 +57,7 @@ export function Confirmation() {
           <span>
             <p>Payment on Delivery</p>
             <p>
-              <strong>Bitcoin</strong>
+              <strong>{order.paymentMethod}</strong>
             </p>
           </span>
         </TextBox>

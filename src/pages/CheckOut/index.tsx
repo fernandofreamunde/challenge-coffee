@@ -1,4 +1,4 @@
-import { CreditCard, CurrencyBtc, MapPinLine, Money } from 'phosphor-react'
+import { CurrencyBtc, MapPinLine } from 'phosphor-react'
 import {
   AddressFormContainer,
   Calculations,
@@ -9,11 +9,13 @@ import {
   PaymentMethodContainer,
 } from './styles'
 import { CartItem } from './components/CartItem'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { PaymentSelector } from './components/PaymentSelector'
+import { useNavigate } from 'react-router-dom'
 
 const checkoutFormValidationSchema = zod.object({
   vatNumber: zod.string().min(1),
@@ -24,10 +26,12 @@ const checkoutFormValidationSchema = zod.object({
   city: zod.string().min(1),
 })
 
-type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
+export type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
 
 export function CheckOut() {
-  const { cart } = useContext(CartContext)
+  const { cart, setOrder } = useContext(CartContext)
+  const [paymentMethod, setPaymentMethod] = useState('bitcoin')
+  const navigate = useNavigate()
 
   const deliveryFee = 350
   const productTotal = cart.reduce((total, item) => {
@@ -48,13 +52,23 @@ export function CheckOut() {
     resolver: zodResolver(checkoutFormValidationSchema),
   })
 
-  const { handleSubmit, watch, reset, register } = checkoutForm
+  const { handleSubmit, reset, register } = checkoutForm
 
   function handleConfirmCheckout(data: CheckoutFormData) {
-    // createNewCycle(data)
-    console.log(data)
+    const order = {
+      cart,
+      address: data,
+      paymentMethod,
+    }
 
+    setOrder(order)
+
+    navigate('/confirmation')
     reset()
+  }
+
+  function handleSelectPaymentMethod(value: string) {
+    setPaymentMethod(value)
   }
 
   return (
@@ -120,15 +134,21 @@ export function CheckOut() {
           </div>
 
           <div>
-            <button>
-              <CurrencyBtc size={20} /> Bitcoin
-            </button>
-            <button>
-              <CreditCard size={20} /> Card
-            </button>
-            <button>
-              <Money size={20} /> Cash
-            </button>
+            <PaymentSelector
+              onTriger={handleSelectPaymentMethod}
+              value="bitcoin"
+              selected={paymentMethod === 'bitcoin'}
+            />
+            <PaymentSelector
+              onTriger={handleSelectPaymentMethod}
+              value="card"
+              selected={paymentMethod === 'card'}
+            />
+            <PaymentSelector
+              onTriger={handleSelectPaymentMethod}
+              value="cash"
+              selected={paymentMethod === 'cash'}
+            />
           </div>
         </PaymentMethodContainer>
       </CheckoutContainer>

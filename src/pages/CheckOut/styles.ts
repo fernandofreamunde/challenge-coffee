@@ -89,7 +89,6 @@ export const AddressFormContainer = styled.div`
 
     display: flex;
     flex-direction: column;
-    align-items; flex:start;
     gap: 1rem;
     flex-wrap: wrap;
 
@@ -107,13 +106,12 @@ export const AddressFormContainer = styled.div`
 
     div {
       display: flex;
-      gap: .75rem;
+      gap: 0.75rem;
 
-      input { 
+      input {
         flex-grow: 1;
       }
     }
-    
   }
 `
 

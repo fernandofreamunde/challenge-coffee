@@ -29,7 +29,7 @@ export function DefaultLayout() {
 
           <Nav>
             <LocationSelector>
-              <MapPin size={22} weight="fill" /> Porto Alegre, RS
+              <MapPin size={22} weight="fill" /> Amsterdam, NL
             </LocationSelector>
             <NavLink to="checkout">
               <CartButton>
